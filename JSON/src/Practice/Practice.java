@@ -95,15 +95,37 @@ public class Practice {
 		
 		for(File file : listOfFiles) {		//iterator through all files one-by-one
 			
+			String FileName = file.getName();
+			
+			
 			/* This is just to resist the data to only create the index of upto 15 documents for the assignment*/
-			if(count == 15) {
-				break;
-			}
+			//if(count == 25) {
+			//	break;
+			//}
 			if(file.isFile()) {
 				String fileName = file.getName();
+				String firstfiveLetters = fileName.substring(0,5);
+				
+				if(!(firstfiveLetters.equalsIgnoreCase("bDone"))) {
+					
+				
+				String newfileName = "bDone"+file.getName();
+
 				String filepath = "C:/Users/Ahmad/desktop/blog/blog dataset/"+fileName;
-				pa.JSONFileParser(filepath,fileName);
-				count++;
+				String newfilepath = "C:/Users/Ahmad/desktop/blog/blog dataset/"+newfileName;
+				File f = new File ("C:/Users/Ahmad/desktop/blog/blog dataset/"+fileName);
+				
+				f.renameTo(new File(newfilepath));
+
+			//	System.out.println(newfileName);
+				pa.JSONFileParser(newfilepath,fileName);
+				System.out.println(fileName+"is done");
+				}
+				else {
+					System.out.println(fileName+ " Forward Index Already Created");
+				}
+			//	count++;
+				
 			}
 		}
 
