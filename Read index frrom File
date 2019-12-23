@@ -1,0 +1,27 @@
+public void ReadIndexFromFile(String filepath,String fileName) throws FileNotFoundException, IOException, ParseException {
+
+		Object obj = new JSONParser().parse(new FileReader(filepath));
+		JSONObject jo = (JSONObject) obj;
+		String key;
+
+
+		Map ForwardIndex = (Map) jo.get("Forward Index");
+		Iterator<Map.Entry> itr1 = ForwardIndex.entrySet().iterator();   // creating the iterator to iterator through the each value of the key from JSON file
+
+		while(itr1.hasNext()) {     // condition to check whether the file has thesome content left or not
+
+			Map.Entry pair = itr1.next();
+			key = (String) pair.getKey();  // getting the value from JSON file
+
+
+			/*This whole block is to check whether the element is in the hashMap or not so that we can continously 
+			 * check for the documents which have same words*/
+
+			if(map.containsKey(key)) { 				// Goes into this block if hashMap contains the key 
+				String Doc = map.get(key);        
+				map.put(key, Doc+" | "+filepath);		// append the new Filename if the the key already has the value
+			}
+			else {
+				String Doc = map.get(key);
+				map.put(key, filepath);				// it will simply add the fileName as value and the word as a key
+			}
