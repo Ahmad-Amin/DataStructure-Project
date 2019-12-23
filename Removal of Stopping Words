@@ -1,0 +1,24 @@
+// Function to remove all the Soping words that i picked up from internet
+	
+	public String removeStopWords(String str) throws FileNotFoundException {
+		
+		Vector v = new Vector();			// Creating object of two vector for dynamic memory
+		Vector regex = new Vector();
+		String [] paragraphs = str.split(" ");		// Spliting the input string into array of String
+		
+		File file = new File("C:/Users/Ahmad/Desktop/stoping words.txt"); 	// filepath where my stoping words file is located
+		
+		Scanner sc = new Scanner(file);	
+		
+		while (sc.hasNextLine()) 	// check the end of the file
+		     v.add(sc.nextLine());	// adding the values one by one into vector to check for the words
+		for(int i=0;i<v.size();i++) {
+			regex.add("\\s*\\b"+v.elementAt(i)+"\\b\\s*");		// creating the regex with removing all spaces and blanks for rmove wor
+		}
+
+		for(int i=0;i<regex.size();i++) {
+			String removeWord = (String) regex.elementAt(i);	// checking one by one the word with the regex and if equals then remove it
+			str = str.replaceAll(removeWord," ");		
+		}
+		return str;		// returning the string by removing all the stoping words
+	} 
