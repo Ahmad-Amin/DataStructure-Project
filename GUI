@@ -1,0 +1,112 @@
+package gui;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
+
+public class gui {
+
+	private JFrame frmSearchEngine;
+	private JTextField textField;
+	private JFileChooser fileChooser;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					gui window = new gui();
+					window.frmSearchEngine.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public gui() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmSearchEngine = new JFrame();
+		frmSearchEngine.setBackground(UIManager.getColor("OptionPane.foreground"));
+		frmSearchEngine.setFont(new Font("Dialog", Font.BOLD, 12));
+		frmSearchEngine.setTitle("Search Engine");
+		frmSearchEngine.getContentPane().setBackground(Color.BLACK);
+		frmSearchEngine.getContentPane().setLayout(null);
+		
+		JLabel lblSearchEngine = new JLabel("Search Engine");
+		lblSearchEngine.setForeground(Color.YELLOW);
+		lblSearchEngine.setBackground(Color.YELLOW);
+		lblSearchEngine.setFont(new Font("Tahoma", Font.BOLD, 23));
+		lblSearchEngine.setBounds(108, 32, 171, 55);
+		frmSearchEngine.getContentPane().add(lblSearchEngine);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Arial", Font.PLAIN, 14));
+		textField.setBounds(41, 87, 289, 28);
+		frmSearchEngine.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		fileChooser = new JFileChooser();
+		
+        JButton GoButton = new JButton("Go");
+		
+        GoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+			
+				
+			}
+		});
+		GoButton.setBackground(UIManager.getColor("PasswordField.selectionBackground"));
+		GoButton.setForeground(Color.BLACK);
+		GoButton.setFont(new Font("Tahoma", Font.BOLD, 12));
+		GoButton.setBounds(340, 87, 60, 28);
+		frmSearchEngine.getContentPane().add(GoButton);
+		
+		JButton btnAddANew = new JButton("Add a new file");
+		btnAddANew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				fileChooser.showSaveDialog(null);
+			}
+		});
+		btnAddANew.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAddANew.setBounds(129, 189, 135, 28);
+		frmSearchEngine.getContentPane().add(btnAddANew);
+		
+		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			textField.setText("");
+			}
+		});
+		btnClear.setForeground(Color.BLACK);
+		btnClear.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnClear.setBackground(Color.WHITE);
+		btnClear.setBounds(160, 126, 69, 28);
+		frmSearchEngine.getContentPane().add(btnClear);
+		frmSearchEngine.setBounds(100, 100, 450, 300);
+		frmSearchEngine.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+}
